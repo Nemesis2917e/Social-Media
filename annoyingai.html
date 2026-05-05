@@ -1,89 +1,227 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>ForgeByte Annoying AI</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>ForgeByteTech</title>
 
 <style>
-*{box-sizing:border-box;font-family:Inter,sans-serif;}
-
-body{
-    margin:0;
-    height:100vh;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    background:radial-gradient(circle at top,#1e293b,#0b1220);
-    color:#e5e7eb;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-.app{
-    width:92%;
-    max-width:520px;
-    padding:22px;
-    border-radius:20px;
-    background:rgba(255,255,255,0.05);
-    border:1px solid rgba(255,255,255,0.08);
-    backdrop-filter:blur(18px);
+body {
+  background: linear-gradient(135deg, #0f172a, #1e293b);
+  color: #e2e8f0;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow-x: hidden;
 }
 
-h2{margin:0;}
-.sub{font-size:13px;opacity:0.7;margin-bottom:14px}
-
-.row{
-    display:flex;
-    gap:10px;
+/* HEADER */
+header {
+  width: 100%;
+  padding: 20px;
+  text-align: center;
+  background: rgba(0,0,0,0.3);
+  backdrop-filter: blur(10px);
 }
 
-select,input{
-    flex:1;
-    padding:12px;
-    border-radius:10px;
-    border:none;
-    background:#020617;
-    color:white;
-    outline:none;
+header h1 {
+  font-size: clamp(1.6rem, 4vw, 2.4rem);
+  background: linear-gradient(135deg, #38bdf8, #06b6d4);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
-button{
-    padding:12px 14px;
-    border-radius:10px;
-    border:none;
-    background:#3b82f6;
-    color:white;
-    cursor:pointer;
+header p {
+  margin-top: 6px;
+  color: #94a3b8;
 }
 
-.response{
-    margin-top:14px;
-    padding:14px;
-    min-height:80px;
-    border-radius:12px;
-    background:rgba(0,0,0,0.35);
-    border:1px solid rgba(255,255,255,0.08);
-    line-height:1.4;
-    font-size:14px;
+/* CONTAINER */
+.container {
+  width: 100%;
+  max-width: 1100px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
 }
 
-/* footer */
-.footer{
-    margin-top:14px;
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    flex-wrap:wrap;
-    gap:10px;
+/* SECTION */
+.section-title {
+  font-size: 1.2rem;
+  color: #38bdf8;
+  margin-bottom:8%;
 }
 
-.donate{
-    text-decoration:none;
-    padding:10px 14px;
-    border-radius:999px;
-    background:linear-gradient(135deg,#facc15,#f59e0b);
-    color:black;
+/* PROJECTS */
+.projects {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 18px;
+}
+
+.card {
+  flex: 1 1 280px;
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 14px;
+  padding: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  transition: 0.3s;
+  background: rgba(255,255,255,0.08);
+}
+
+.btn {
+  padding: 8px 12px;
+  background: #38bdf8;
+  color: #0f172a;
+  border-radius: 8px;
+  font-weight: bold;
+  text-decoration: none;
+  align-self: flex-start;
+}
+
+/* SOCIAL SECTION */
+.socials-section {
+  padding: 20px;
+  border-radius: 16px;
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.1);
+}
+
+.socials {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+}
+
+/* SOCIAL BUTTONS */
+.social-btn {
+  width: 62px;
+  height: 62px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: 0.3s;
+  text-decoration: none;
+  overflow: hidden;
+}
+
+/* ICON IMAGE */
+.social-btn img {
+  width: 26px;
+  height: 26px;
+}
+
+/* COLORS */
+.youtube { background: linear-gradient(135deg,#ff0000,#ff6b6b); }
+.facebook { background: linear-gradient(135deg,#1877f2,#0a66c2); }
+.tiktok { background: linear-gradient(135deg,#000,#25f4ee); }
+.instagram { background: linear-gradient(135deg,#f58529,#dd2a7b,#8134af); }
+
+.social-btn:hover {
+  transform: translateY(-6px) scale(1.08);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+}
+
+/* FOOTER */
+footer {
+  padding: 20px;
+  color: #94a3b8;
+  font-size: 0.85rem;
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  .card {
+    flex: 1 1 100%;
+  }
+
+  .social-btn {
+    width: 55px;
+    height: 55px;
+  }
+
+  .social-btn img {
+    width: 22px;
+    height: 22px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <h1>ForgeByteTech</h1>
+  <p>Building digital chaos into structured innovation</p>
+</header>
+
+<div class="container">
+
+  <div class="section-title">Projects</div>
+
+  <div class="projects">
+    <div class="card">
+      <h3>Annoying AI</h3>
+      <p>Playful AI experiment with dynamic responses.</p>
+      <a class="btn" href="annoyingai.html">View</a>
+    </div>
+  </div>
+
+  <div class="socials-section">
+
+    <div class="section-title">Follow Us</div>
+
+    <div class="socials">
+
+      <!-- TikTok -->
+      <a href="https://www.tiktok.com/@forgebyte_tech" class="social-btn tiktok">
+        <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/tiktok.svg" alt="TikTok">
+      </a>
+
+      <!-- YouTube -->
+      <a href="https://youtube.com/@forgebyte_tech" class="social-btn youtube">
+        <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/youtube.svg" alt="YouTube">
+      </a>
+
+      <!-- Facebook -->
+      <a href="https://www.facebook.com/share/17XX45opyp/" class="social-btn facebook">
+        <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/facebook.svg" alt="Facebook">
+      </a>
+
+      <!-- Instagram -->
+      <a href="https://www.instagram.com/forgebyte_tech" class="social-btn instagram">
+        <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/instagram.svg" alt="Instagram">
+      </a>
+
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  © 2026 ForgeByteTech
+</footer>
+
+</body>
+</html>    color:black;
     font-weight:700;
     font-size:13px;
     transition:0.2s;
