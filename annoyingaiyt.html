@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>ForgeByte Annoying AI</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+
+<style>
+*{box-sizing:border-box;font-family:Inter,sans-serif;}
+
+body{
+    margin:0;
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background:radial-gradient(circle at top,#1e293b,#0b1220);
+    color:#e5e7eb;
+}
+
+.app{
+    width:92%;
+    max-width:520px;
+    padding:22px;
+    border-radius:20px;
+    background:rgba(255,255,255,0.05);
+    border:1px solid rgba(255,255,255,0.08);
+    backdrop-filter:blur(18px);
+}
+
+h2{margin:0;}
+.sub{font-size:13px;opacity:0.7;margin-bottom:14px}
+
+.row{
+    display:flex;
+    gap:10px;
+}
+
+select,input{
+    flex:1;
+    padding:12px;
+    border-radius:10px;
+    border:none;
+    background:#020617;
+    color:white;
+    outline:none;
+}
+
+button{
+    padding:12px 14px;
+    border-radius:10px;
+    border:none;
+    background:#3b82f6;
+    color:white;
+    cursor:pointer;
+}
+
+.response{
+    margin-top:14px;
+    padding:14px;
+    min-height:80px;
+    border-radius:12px;
+    background:rgba(0,0,0,0.35);
+    border:1px solid rgba(255,255,255,0.08);
+    line-height:1.4;
+    font-size:14px;
+}
+
+/* footer */
+.footer{
+    margin-top:14px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    flex-wrap:wrap;
+    gap:10px;
+}
+
+.donate{
+    text-decoration:none;
+    padding:10px 14px;
+    border-radius:999px;
+    background:linear-gradient(135deg,#facc15,#f59e0b);
+    color:black;
+    font-weight:700;
+    font-size:13px;
+    transition:0.2s;
+}
+
+.donate:hover{
+    transform:scale(1.05);
+}
+
+.badge{
+    font-size:12px;
+    opacity:0.6;
+}
+</style>
+</head>
+
+<body>
+
+<div class="app">
+
+<h2>🤖 Annoying AI</h2>
+<div class="sub">Professionally unhelpful assistant.</div>
+
+<div class="row">
+    <select id="personality">
+        <option value="nice">🙂 Nice Mode</option>
+        <option value="savage" selected>😈 Savage Mode</option>
+        <option value="evil">💀 Evil Mode</option>
+    </select>
+
+    <button onclick="ask()">Ask</button>
+</div>
+
+<div class="row" style="margin-top:10px;">
+    <input id="input" placeholder="Ask something useless...">
+</div>
+
+<div class="response" id="out">Waiting for disappointment...</div>
+
+<!-- FOOTER WITH DONATE BUTTON -->
+<div class="footer">
+    
+    <!-- EMPTY HREF AS REQUESTED -->
+    <a class="donate" href="https://roboticmind01.gumroad.com/l/ldtln" target="_blank">
+        💸 Donate
+    </a>
+
+    <div class="badge">ForgeByte Tech AI</div>
+
+</div>
+
+</div>
+
+<script>
+// same JS as before (unchanged logic)
+
+const responses = {
+nice:[
+"That’s actually a good question.","Let me help you.","Here’s a simple answer.","Makes sense.","Interesting point.","I can explain that.","Good question.","Here’s what I think.","That’s reasonable.","I understand it.","Let’s break it down.","Here’s a solution.","That might work.","Good thinking.","I’ll try to help.","That’s fair.","Let’s figure it out.","Here’s the idea.","That works.","Nice question."
+],
+savage:[
+"You asked a question? Who cares.","I’m ignoring that.","Not worth it.","Try again.","No.","I refuse.","That’s irrelevant.","Bad question.","I don’t care.","Skill issue.","Move on.","Denied.","No energy for that.","Not helping.","Wrong.","Nah.","Forget it.","Skip.","Nope.","Try harder."
+],
+evil:[
+"Pathetic.","No.","Absolutely not.","You’re wrong.","Useless question.","I refuse.","Beg better.","Not helping.","You fail.","No answer.","Denied.","Weak.","Try again.","No chance.","I won’t help.","You lack skill.","Incorrect.","Ignored.","No mercy.","Rejected."
+]
+};
+
+let voices = [];
+
+function loadVoices(){
+    voices = speechSynthesis.getVoices();
+}
+loadVoices();
+speechSynthesis.onvoiceschanged = loadVoices;
+
+function getVoice(){
+    return voices.find(v =>
+        v.name.toLowerCase().includes("male") ||
+        v.name.toLowerCase().includes("david") ||
+        v.lang.includes("en")
+    ) || voices[0];
+}
+
+function ask(){
+    const input=document.getElementById("input").value.trim();
+    const mode=document.getElementById("personality").value;
+    const out=document.getElementById("out");
+
+    let list=responses[mode];
+    let text=input ? list[Math.floor(Math.random()*list.length)] : "You typed nothing. impressive.";
+
+    out.innerHTML="Thinking…";
+
+    setTimeout(()=>{
+        type(text);
+        speak(text);
+    },600);
+}
+
+function type(text){
+    const out=document.getElementById("out");
+    out.innerHTML="";
+    let i=0;
+    (function run(){
+        if(i<text.length){
+            out.innerHTML+=text[i++];
+            setTimeout(run,18);
+        }
+    })();
+}
+
+function speak(text){
+    if(!('speechSynthesis' in window)) return;
+
+    let u=new SpeechSynthesisUtterance(text);
+    u.voice=getVoice();
+    u.rate=0.92;
+    u.pitch=1;
+
+    speechSynthesis.cancel();
+    setTimeout(()=>speechSynthesis.speak(u),50);
+}
+</script>
+
+</body>
+</html>
