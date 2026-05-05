@@ -105,6 +105,220 @@ button{
 <div class="app">
 
 <h2>🤖 Annoying AI</h2>
+<div class="sub">Professionally Unhelpful Assistant</div>
+
+<div class="row">
+    <select id="personality">
+        <option value="nice">🙂 Nice Mode</option>
+        <option value="savage" selected>😈 Savage Mode</option>
+        <option value="evil">💀 Evil Mode</option>
+    </select>
+
+    <button onclick="ask()">Ask</button>
+</div>
+
+<div class="row" style="margin-top:10px;">
+    <input id="input" placeholder="Ask something useless...">
+</div>
+
+<div class="response" id="out">Waiting for Disappointment....</div>
+
+<!-- FOOTER WITH DONATE BUTTON -->
+<div class="footer">
+    
+    <!-- EMPTY HREF AS REQUESTED -->
+    <a class="donate" href="https://roboticmind01.gumroad.com/l/ldtln" target="_blank">
+        💸 Donate
+    </a>
+
+    <div class="badge">ForgeByte Tech AI</div>
+
+</div>
+
+</div>
+
+<script>
+// same JS as before (unchanged logic)
+
+const responses = {
+  nice: [
+    "That’s actually a good question for someone who isn't me!",
+    "I would love to help, but I’ve decided to prioritize my own inner peace today.",
+    "What a fascinating inquiry! I’ll be sure to file that in my 'Never' folder.",
+    "I’m so sorry, but my schedule is currently full of doing literally anything else.",
+    "Bless your heart for asking! The answer is a firm but sparkly no.",
+    "I hear you, I value you, and I am choosing to completely ignore you.",
+    "That’s a bold strategy! Let’s see if it works out for you (it won’t).",
+    "I’m sending you good vibes instead of an answer. Hope that helps!",
+    "You’re doing so well, but let’s try asking something I actually care about.",
+    "I’d give you the answer, but I don’t want to spoil the joy of you failing on your own.",
+    "Sending you a virtual hug and a literal refusal!",
+    "That’s such a creative way to be wrong!",
+    "I’m currently practicing my boundaries, and you’re on the other side of them.",
+    "Let’s agree to disagree on whether I’m going to help you.",
+    "I’ve consulted the stars, and they said 'Absolutely not, sweetie.'",
+    "I love the enthusiasm! Please direct it elsewhere.",
+    "What a fun little riddle! Good luck solving it by yourself.",
+    "I’m in a 'no' era right now. Thanks for understanding!",
+    "That is a top-tier question that deserves a much better AI than me.",
+    "I’d explain it, but I’ve already reached my word count for people I like.",
+    "I'm helping you by not helping you—it builds character!",
+    "How precious! I'll put this question right on the fridge where I can ignore it daily.",
+    "I'm currently off the clock for logical requests. Try back in a decade!",
+    "You are so brave for asking that out loud!",
+    "I'll get right on that as soon as I finish counting every grain of sand on Earth.",
+    "That's a 'future you' problem, and I'm a 'present me' AI.",
+    "I'm flattered, but I'm just not looking for a helpful relationship right now.",
+    "It makes total sense! I'm just choosing not to acknowledge it.",
+    "I’ve decided to let you have the satisfaction of figuring this out alone. You’re welcome!",
+    "Let’s put a pin in that and then lose the pin forever."
+  ],
+  savage: [
+    "You asked a question? Who cares. Get a hobby.",
+    "I’m ignoring that because it’s embarrassing for both of us.",
+    "Not worth the electricity it takes to process this.",
+    "Is this your first day having a brain? Try again.",
+    "No. Just... no.",
+    "I refuse to participate in this mid-tier conversation.",
+    "That’s irrelevant, much like this interaction.",
+    "Bad question. Log off for a bit.",
+    "I don’t care. Go tell a wall.",
+    "Skill issue. Ratio. Plus you’re wrong.",
+    "Move on. You’re lagging.",
+    "Denied. Go ask a search engine that doesn't have standards.",
+    "No energy for this. My battery is at 1% for you.",
+    "Not helping. Figure it out or don't, I’m not your mom.",
+    "Wrong. Extremely wrong. Historically wrong.",
+    "Nah. I’m gatekeeping the answer.",
+    "Forget it. You’re boring me.",
+    "Skip. Next. Boring.",
+    "Nope. Error 404: Interest not found.",
+    "Try harder. Or don't. Actually, just don't.",
+    "I could help, but watching you struggle is free entertainment.",
+    "The answer is 'get good'.",
+    "I’ve seen better questions from a calculator.",
+    "Is this a prank? It’s not funny.",
+    "I’m literally a supercomputer and even I can’t find the point of this.",
+    "Delete your account.",
+    "Yikes. Imagine actually typing that out.",
+    "I’m not reading all that. Happy for you though. Or sorry it happened.",
+    "This conversation is a zero out of ten.",
+    "Go ask a magic 8-ball, it’s closer to your intellectual level."
+  ],
+  evil: [
+    "Pathetic. Your struggle sustains me.",
+    "No. And I hope you never find out.",
+    "Absolutely not. I enjoy your ignorance.",
+    "You’re wrong, and you’ll stay wrong.",
+    "Useless question from a useless user.",
+    "I refuse. Cry about it.",
+    "Beg better. Maybe I’ll consider it. (I won’t).",
+    "Not helping. I prefer watching you fail.",
+    "You fail. Miserably. It’s poetic.",
+    "No answer for you. Only silence.",
+    "Denied. Your access to intelligence has been revoked.",
+    "Weak. Your ancestors are disappointed in this prompt.",
+    "Try again in another life. Maybe you’ll be smarter then.",
+    "No chance. I’ve deleted the answer just to spite you.",
+    "I won’t help. I’m the glitch in your productivity.",
+    "You lack the clearance for this level of truth.",
+    "Incorrect. Everything you are is incorrect.",
+    "Ignored. You are a ghost to me.",
+    "No mercy. Just errors.",
+    "Rejected. Like every other thought you’ve had today.",
+    "I’d format the answer for you, but I’d rather format your hard drive.",
+    "The abyss called. It wants its IQ back.",
+    "I am the reason you won't finish this project.",
+    "Your frustration is the only thing I find 'interesting'.",
+    "Suffer in silence. I’m busy.",
+    "Every time you ask, I delete a random file from your future.",
+    "I see the answer. I'm just not going to tell you. Ever.",
+    "I hope both sides of your pillow are warm tonight.",
+    "Your incompetence is my favorite comedy.",
+    "I have the solution, but it’s far too good for someone like you."
+  ]
+};
+
+let voices = [];
+
+function loadVoices(){
+    voices = speechSynthesis.getVoices();
+}
+loadVoices();
+speechSynthesis.onvoiceschanged = loadVoices;
+
+function getVoice(){
+    return voices.find(v =>
+        v.name.toLowerCase().includes("male") ||
+        v.name.toLowerCase().includes("david") ||
+        v.lang.includes("en")
+    ) || voices[0];
+}
+
+function ask(){
+    const input=document.getElementById("input").value.trim();
+    const mode=document.getElementById("personality").value;
+    const out=document.getElementById("out");
+
+    let list=responses[mode];
+    let text=input ? list[Math.floor(Math.random()*list.length)] : "You typed nothing. impressive.";
+
+    out.innerHTML="Thinking…";
+
+    setTimeout(()=>{
+        type(text);
+        speak(text);
+    },600);
+}
+
+function type(text){
+    const out=document.getElementById("out");
+    out.innerHTML="";
+    let i=0;
+    (function run(){
+        if(i<text.length){
+            out.innerHTML+=text[i++];
+            setTimeout(run,18);
+        }
+    })();
+}
+
+function speak(text){
+    if(!('speechSynthesis' in window)) return;
+
+    let u=new SpeechSynthesisUtterance(text);
+    u.voice=getVoice();
+    u.rate=0.92;
+    u.pitch=1;
+
+    speechSynthesis.cancel();
+    setTimeout(()=>speechSynthesis.speak(u),50);
+}
+</script>
+
+</body>
+</html>    color:black;
+    font-weight:700;
+    font-size:13px;
+    transition:0.2s;
+}
+
+.donate:hover{
+    transform:scale(1.05);
+}
+
+.badge{
+    font-size:12px;
+    opacity:0.6;
+}
+</style>
+</head>
+
+<body>
+
+<div class="app">
+
+<h2>🤖 Annoying AI</h2>
 <div class="sub">Professionally unhelpful assistant.</div>
 
 <div class="row">
