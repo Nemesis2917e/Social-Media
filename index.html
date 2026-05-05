@@ -6,7 +6,6 @@
 <title>ForgeByteTech</title>
 
 <style>
-/* ===================== RESET ===================== */
 * {
   margin: 0;
   padding: 0;
@@ -24,7 +23,7 @@ body {
   overflow-x: hidden;
 }
 
-/* ===================== HEADER ===================== */
+/* HEADER */
 header {
   width: 100%;
   padding: 20px;
@@ -43,10 +42,9 @@ header h1 {
 header p {
   margin-top: 6px;
   color: #94a3b8;
-  font-size: clamp(0.85rem, 2vw, 1rem);
 }
 
-/* ===================== MAIN WRAPPER ===================== */
+/* CONTAINER */
 .container {
   width: 100%;
   max-width: 1100px;
@@ -56,22 +54,20 @@ header p {
   gap: 25px;
 }
 
-/* ===================== SECTION TITLE ===================== */
+/* SECTION */
 .section-title {
-  font-size: clamp(1rem, 2.5vw, 1.3rem);
+  font-size: 1.2rem;
   color: #38bdf8;
-  font-weight: 600;
+  margin-bottom:8%;
 }
 
-/* ===================== PROJECT SECTION ===================== */
+/* PROJECTS */
 .projects {
   display: flex;
   flex-wrap: wrap;
   gap: 18px;
-  justify-content: flex-start;
 }
 
-/* CARD */
 .card {
   flex: 1 1 280px;
   background: rgba(255,255,255,0.05);
@@ -81,51 +77,30 @@ header p {
   display: flex;
   flex-direction: column;
   gap: 10px;
-  transition: 0.3s;
 }
 
 .card:hover {
-  transform: translateY(-6px);
+  transform: translateY(-5px);
+  transition: 0.3s;
   background: rgba(255,255,255,0.08);
 }
 
-.card h3 {
-  font-size: 1.1rem;
-}
-
-.card p {
-  font-size: 0.9rem;
-  color: #cbd5e1;
-  line-height: 1.4;
-}
-
-/* BUTTON */
 .btn {
-  align-self: flex-start;
   padding: 8px 12px;
-  border-radius: 8px;
   background: #38bdf8;
   color: #0f172a;
-  text-decoration: none;
+  border-radius: 8px;
   font-weight: bold;
-  font-size: 0.85rem;
-  transition: 0.3s;
+  text-decoration: none;
+  align-self: flex-start;
 }
 
-.btn:hover {
-  background: #0ea5e9;
-  transform: scale(1.05);
-}
-
-/* ===================== SOCIAL SECTION ===================== */
+/* SOCIAL SECTION */
 .socials-section {
   padding: 20px;
   border-radius: 16px;
   background: rgba(255,255,255,0.03);
   border: 1px solid rgba(255,255,255,0.1);
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
 }
 
 .socials {
@@ -135,79 +110,45 @@ header p {
   gap: 12px;
 }
 
-/* SOCIAL BASE BUTTON */
-.social-btn,
-.social-btn-text {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-  text-decoration: none;
-  color: white;
-  font-weight: 600;
-  transition: 0.3s;
-}
-
-/* ICON BUTTONS */
+/* SOCIAL BUTTONS */
 .social-btn {
   width: 62px;
   height: 62px;
   border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: 0.3s;
+  text-decoration: none;
+  overflow: hidden;
 }
 
-/* TEXT BUTTONS */
-.social-btn-text {
-  padding: 10px 20px;
-  border-radius: 50px;
-  white-space: nowrap;
-  font-size: 0.9rem;
+/* ICON IMAGE */
+.social-btn img {
+  width: 26px;
+  height: 26px;
 }
 
-/* ICON SIZE */
-.social-btn svg {
-  width: 22px;
-  height: 22px;
-}
+/* COLORS */
+.youtube { background: linear-gradient(135deg,#ff0000,#ff6b6b); }
+.facebook { background: linear-gradient(135deg,#1877f2,#0a66c2); }
+.tiktok { background: linear-gradient(135deg,#000,#25f4ee); }
+.instagram { background: linear-gradient(135deg,#f58529,#dd2a7b,#8134af); }
 
-/* ===================== COLORS ===================== */
-.youtube {
-  background: linear-gradient(135deg, #ff0000, #ff6b6b);
-}
-
-.facebook {
-  background: linear-gradient(135deg, #1877f2, #0a66c2);
-}
-
-.tiktok {
-  background: linear-gradient(135deg, #000000, #111, #25f4ee);
-}
-
-.instagram {
-  background: linear-gradient(135deg, #f58529, #dd2a7b, #8134af);
-}
-
-/* ===================== HOVER ===================== */
-.social-btn:hover,
-.social-btn-text:hover {
-  transform: translateY(-6px) scale(1.05);
+.social-btn:hover {
+  transform: translateY(-6px) scale(1.08);
   box-shadow: 0 10px 25px rgba(0,0,0,0.3);
 }
 
-/* ===================== FOOTER ===================== */
+/* FOOTER */
 footer {
-  width: 100%;
-  text-align: center;
   padding: 20px;
   color: #94a3b8;
   font-size: 0.85rem;
 }
 
-/* ===================== RESPONSIVE ===================== */
+/* RESPONSIVE */
 @media (max-width: 768px) {
-  .projects {
-    justify-content: center;
-  }
-
   .card {
     flex: 1 1 100%;
   }
@@ -217,19 +158,9 @@ footer {
     height: 55px;
   }
 
-  .social-btn-text {
-    padding: 9px 16px;
-    font-size: 0.85rem;
-  }
-}
-
-@media (max-width: 480px) {
-  .container {
-    padding: 12px;
-  }
-
-  .socials {
-    gap: 10px;
+  .social-btn img {
+    width: 22px;
+    height: 22px;
   }
 }
 </style>
@@ -244,20 +175,16 @@ footer {
 
 <div class="container">
 
-  <!-- PROJECTS -->
   <div class="section-title">Projects</div>
 
   <div class="projects">
-
     <div class="card">
       <h3>Annoying AI</h3>
-      <p>A playful AI experiment with dynamic personality responses and interactive UI behavior.</p>
-      <a class="btn" href="annoyingai.html">View Project</a>
+      <p>Playful AI experiment with dynamic responses.</p>
+      <a class="btn" href="annoyingai.html">View</a>
     </div>
-
   </div>
 
-  <!-- SOCIALS -->
   <div class="socials-section">
 
     <div class="section-title">Follow Us</div>
@@ -265,27 +192,23 @@ footer {
     <div class="socials">
 
       <!-- TikTok -->
-      <a href="https://www.tiktok.com/@forgebyte_tech" class="social-btn-text tiktok">
-        TikTok
+      <a href="https://www.tiktok.com/@forgebyte_tech" class="social-btn tiktok">
+        <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/tiktok.svg" alt="TikTok">
       </a>
 
       <!-- YouTube -->
       <a href="https://youtube.com/@forgebyte_tech" class="social-btn youtube">
-        <svg viewBox="0 0 24 24" fill="white">
-          <path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5S4.5 3.5 2.6 4.1A3 3 0 0 0 .5 6.2C0 8 0 12 0 12s0 4 .5 5.8a3 3 0 0 0 2.1 2.1C4.5 20.5 12 20.5 12 20.5s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1C24 16 24 12 24 12s0-4-.5-5.8zM9.5 15.5v-7L15.8 12 9.5 15.5z"/>
-        </svg>
+        <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/youtube.svg" alt="YouTube">
       </a>
 
       <!-- Facebook -->
       <a href="https://www.facebook.com/share/17XX45opyp/" class="social-btn facebook">
-        <svg viewBox="0 0 24 24" fill="white">
-          <path d="M24 12c0-6.6-5.4-12-12-12S0 5.4 0 12c0 6 4.4 11 10 12v-8H7v-4h3V9c0-3 1.8-4.6 4.5-4.6H17v4h-2c-1.5 0-2 .9-2 1.9V12h4l-1 4h-3v8c5.6-1 10-6 10-12z"/>
-        </svg>
+        <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/facebook.svg" alt="Facebook">
       </a>
 
       <!-- Instagram -->
-      <a href="https://www.instagram.com/forgebyte_tech" class="social-btn-text instagram">
-        Instagram
+      <a href="https://www.instagram.com/forgebyte_tech" class="social-btn instagram">
+        <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/instagram.svg" alt="Instagram">
       </a>
 
     </div>
@@ -294,7 +217,7 @@ footer {
 </div>
 
 <footer>
-  © 2026 ForgeByteTech. All rights reserved.
+  © 2026 ForgeByteTech
 </footer>
 
 </body>
