@@ -1,6 +1,322 @@
-<section class="social-media">
-    <a href="https://www.tiktok.com/@yourusername">TikTok</a>
-    <a href="https://www.youtube.com/channel/yourchannelid">YouTube</a>
-    <a href="https://www.facebook.com/yourpage">Facebook</a>
-    <a href="https://www.instagram.com/yourusername">Instagram</a>
-</section>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ForgeByteTech</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+      background: linear-gradient(135deg, #0f172a, #1e293b);
+      color: #e2e8f0;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    header {
+      width: 100%;
+      padding: 25px;
+      text-align: center;
+      background: rgba(0, 0, 0, 0.3);
+      backdrop-filter: blur(10px);
+    }
+
+    header h1 {
+      font-size: 2.2rem;
+      letter-spacing: 1px;
+      background: linear-gradient(135deg, #38bdf8, #06b6d4);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    header p {
+      margin-top: 5px;
+      color: #94a3b8;
+    }
+
+    .container {
+      width: 90%;
+      max-width: 1100px;
+      margin-top: 30px;
+    }
+
+    .section-title {
+      margin: 20px 0 10px;
+      font-size: 1.3rem;
+      color: #38bdf8;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+    }
+
+    .card {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 14px;
+      padding: 20px;
+      transition: 0.3s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      background: rgba(255, 255, 255, 0.08);
+    }
+
+    .card h3 {
+      margin-bottom: 10px;
+    }
+
+    .card p {
+      font-size: 0.9rem;
+      color: #cbd5e1;
+      margin-bottom: 15px;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 8px 12px;
+      border-radius: 8px;
+      background: #38bdf8;
+      color: #0f172a;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 0.85rem;
+      transition: all 0.3s ease;
+    }
+
+    .btn:hover {
+      background: #0ea5e9;
+      transform: scale(1.05);
+    }
+
+    footer {
+      margin-top: 40px;
+      padding: 20px;
+      text-align: center;
+      color: #94a3b8;
+      font-size: 0.85rem;
+    }
+
+    /* Beautiful Social Media Buttons */
+    .socials-section {
+      margin-top: 30px;
+      padding: 30px;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 16px;
+    }
+
+    .socials {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-top: 20px;
+    }
+
+    /* Icon Buttons (YouTube & Facebook) */
+    .social-btn {
+      position: relative;
+      width: 70px;
+      height: 70px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      color: white;
+      transition: all 0.3s ease;
+      border: 2px solid transparent;
+      overflow: hidden;
+    }
+
+    .social-btn svg {
+      width: 35px;
+      height: 35px;
+      z-index: 1;
+    }
+
+    .social-btn::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: rgba(255, 255, 255, 0.1);
+      transition: left 0.3s ease;
+      z-index: 0;
+    }
+
+    .social-btn:hover::before {
+      left: 0;
+    }
+
+    /* Text Label Buttons (TikTok & Instagram) */
+    .social-btn-text {
+      position: relative;
+      padding: 12px 30px;
+      border-radius: 50px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      color: white;
+      font-weight: 600;
+      font-size: 0.95rem;
+      transition: all 0.3s ease;
+      border: 2px solid transparent;
+      overflow: hidden;
+      white-space: nowrap;
+    }
+
+    .social-btn-text::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: rgba(255, 255, 255, 0.15);
+      transition: left 0.3s ease;
+      z-index: 0;
+    }
+
+    .social-btn-text:hover::before {
+      left: 0;
+    }
+
+    .social-btn-text span {
+      position: relative;
+      z-index: 1;
+    }
+
+    /* YouTube */
+    .social-btn.youtube {
+      background: linear-gradient(135deg, #ff0000, #ff6b6b);
+    }
+
+    .social-btn.youtube:hover {
+      transform: translateY(-8px) scale(1.1);
+      box-shadow: 0 10px 25px rgba(255, 0, 0, 0.4);
+      border-color: #ff0000;
+    }
+
+    /* Facebook */
+    .social-btn.facebook {
+      background: linear-gradient(135deg, #1877f2, #0a66c2);
+    }
+
+    .social-btn.facebook:hover {
+      transform: translateY(-8px) scale(1.1);
+      box-shadow: 0 10px 25px rgba(24, 119, 242, 0.4);
+      border-color: #1877f2;
+    }
+
+    /* TikTok */
+    .social-btn-text.tiktok {
+      background: linear-gradient(135deg, #000000, #25f4ee);
+    }
+
+    .social-btn-text.tiktok:hover {
+      transform: translateY(-8px) scale(1.05);
+      box-shadow: 0 10px 25px rgba(37, 244, 238, 0.4);
+      border-color: #25f4ee;
+    }
+
+    /* Instagram */
+    .social-btn-text.instagram {
+      background: linear-gradient(135deg, #f58529, #dd2a7b, #8134af);
+    }
+
+    .social-btn-text.instagram:hover {
+      transform: translateY(-8px) scale(1.05);
+      box-shadow: 0 10px 25px rgba(217, 42, 123, 0.4);
+      border-color: #dd2a7b;
+    }
+
+    @media (max-width: 768px) {
+      .social-btn {
+        width: 60px;
+        height: 60px;
+      }
+
+      .social-btn svg {
+        width: 28px;
+        height: 28px;
+      }
+
+      .social-btn-text {
+        padding: 10px 25px;
+        font-size: 0.9rem;
+      }
+
+      header h1 {
+        font-size: 1.8rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>ForgeByteTech</h1>
+    <p>Building digital chaos into structured innovation</p>
+  </header>
+
+  <div class="container">
+    <div class="section-title">Projects</div>
+    <div class="grid">
+      <div class="card">
+        <h3>Annoying AI</h3>
+        <p>A playful AI experiment with dynamic personality responses and interactive UI behavior.</p>
+        <a class="btn" href="annoyingai.html">View Project</a>
+      </div>
+    </div>
+
+    <div class="socials-section">
+      <div class="section-title">Follow Us On Social Media</div>
+      <div class="socials">
+        <!-- TikTok (Text Button) -->
+        <a href="https://www.tiktok.com/@forgebyte_tech?_r=1&_t=ZP-966EX7ZaymU" target="_blank" class="social-btn-text tiktok" title="Follow on TikTok">
+          <span>TikTok</span>
+        </a>
+
+        <!-- YouTube (Icon Button) -->
+        <a href="https://youtube.com/@forgebyte_tech?si=R3M63FGLku3PUlLM" target="_blank" class="social-btn youtube" title="Subscribe on YouTube">
+          <svg viewBox="0 0 24 24" fill="white">
+            <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+          </svg>
+        </a>
+
+        <!-- Facebook (Icon Button) -->
+        <a href="https://www.facebook.com/share/17XX45opyp/" target="_blank" class="social-btn facebook" title="Like on Facebook">
+          <svg viewBox="0 0 24 24" fill="white">
+            <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+          </svg>
+        </a>
+
+        <!-- Instagram (Text Button) -->
+        <a href="https://www.instagram.com/forgebyte_tech?igsh=MXN3Y2V6cWJqNnZ1bA==" target="_blank" class="social-btn-text instagram" title="Follow on Instagram">
+          <span>Instagram</span>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    © 2026 ForgeByteTech. All rights reserved.
+  </footer>
+</body>
+            </html>
