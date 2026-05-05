@@ -6,7 +6,7 @@
 <title>ForgeByteTech</title>
 
 <style>
-/* ===================== GLOBAL RESET ===================== */
+/* ===================== RESET ===================== */
 * {
   margin: 0;
   padding: 0;
@@ -41,39 +41,47 @@ header h1 {
 }
 
 header p {
-  margin-top: 5px;
+  margin-top: 6px;
   color: #94a3b8;
   font-size: clamp(0.85rem, 2vw, 1rem);
 }
 
-/* ===================== CONTAINER ===================== */
+/* ===================== MAIN WRAPPER ===================== */
 .container {
-  width: 92%;
+  width: 100%;
   max-width: 1100px;
-  margin-top: 25px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
 }
 
-/* ===================== TITLES ===================== */
+/* ===================== SECTION TITLE ===================== */
 .section-title {
-  margin: 20px 0 12px;
   font-size: clamp(1rem, 2.5vw, 1.3rem);
   color: #38bdf8;
+  font-weight: 600;
 }
 
-/* ===================== GRID ===================== */
-.grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+/* ===================== PROJECT SECTION ===================== */
+.projects {
+  display: flex;
+  flex-wrap: wrap;
   gap: 18px;
+  justify-content: flex-start;
 }
 
-/* ===================== CARD ===================== */
+/* CARD */
 .card {
+  flex: 1 1 280px;
   background: rgba(255,255,255,0.05);
   border: 1px solid rgba(255,255,255,0.1);
   border-radius: 14px;
   padding: 18px;
-  transition: 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  transition: 0.3s;
 }
 
 .card:hover {
@@ -82,19 +90,18 @@ header p {
 }
 
 .card h3 {
-  margin-bottom: 8px;
+  font-size: 1.1rem;
 }
 
 .card p {
   font-size: 0.9rem;
   color: #cbd5e1;
-  margin-bottom: 12px;
   line-height: 1.4;
 }
 
-/* ===================== BUTTON ===================== */
+/* BUTTON */
 .btn {
-  display: inline-block;
+  align-self: flex-start;
   padding: 8px 12px;
   border-radius: 8px;
   background: #38bdf8;
@@ -112,51 +119,57 @@ header p {
 
 /* ===================== SOCIAL SECTION ===================== */
 .socials-section {
-  margin-top: 30px;
-  padding: 25px;
+  padding: 20px;
+  border-radius: 16px;
   background: rgba(255,255,255,0.03);
   border: 1px solid rgba(255,255,255,0.1);
-  border-radius: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
 }
 
 .socials {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 14px;
-  margin-top: 15px;
+  gap: 12px;
 }
 
-/* ICON BUTTON */
-.social-btn {
-  width: 65px;
-  height: 65px;
-  border-radius: 50%;
+/* SOCIAL BASE BUTTON */
+.social-btn,
+.social-btn-text {
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: 0.3s;
+  gap: 10px;
   text-decoration: none;
   color: white;
-}
-
-.social-btn svg {
-  width: 30px;
-  height: 30px;
-}
-
-/* TEXT BUTTON */
-.social-btn-text {
-  padding: 10px 22px;
-  border-radius: 50px;
   font-weight: 600;
-  color: white;
-  text-decoration: none;
   transition: 0.3s;
-  white-space: nowrap;
 }
 
-/* ===================== SOCIAL COLORS ===================== */
+/* ICON BUTTONS */
+.social-btn {
+  width: 62px;
+  height: 62px;
+  border-radius: 50%;
+}
+
+/* TEXT BUTTONS */
+.social-btn-text {
+  padding: 10px 20px;
+  border-radius: 50px;
+  white-space: nowrap;
+  font-size: 0.9rem;
+}
+
+/* ICON SIZE */
+.social-btn svg {
+  width: 22px;
+  height: 22px;
+}
+
+/* ===================== COLORS ===================== */
 .youtube {
   background: linear-gradient(135deg, #ff0000, #ff6b6b);
 }
@@ -166,14 +179,14 @@ header p {
 }
 
 .tiktok {
-  background: linear-gradient(135deg, #000, #25f4ee);
+  background: linear-gradient(135deg, #000000, #111, #25f4ee);
 }
 
 .instagram {
   background: linear-gradient(135deg, #f58529, #dd2a7b, #8134af);
 }
 
-/* ===================== HOVER EFFECT ===================== */
+/* ===================== HOVER ===================== */
 .social-btn:hover,
 .social-btn-text:hover {
   transform: translateY(-6px) scale(1.05);
@@ -182,42 +195,37 @@ header p {
 
 /* ===================== FOOTER ===================== */
 footer {
-  margin-top: 40px;
-  padding: 20px;
+  width: 100%;
   text-align: center;
+  padding: 20px;
   color: #94a3b8;
   font-size: 0.85rem;
 }
 
 /* ===================== RESPONSIVE ===================== */
 @media (max-width: 768px) {
-  .grid {
-    grid-template-columns: 1fr;
+  .projects {
+    justify-content: center;
+  }
+
+  .card {
+    flex: 1 1 100%;
   }
 
   .social-btn {
-    width: 58px;
-    height: 58px;
-  }
-
-  .social-btn svg {
-    width: 26px;
-    height: 26px;
+    width: 55px;
+    height: 55px;
   }
 
   .social-btn-text {
-    padding: 9px 18px;
+    padding: 9px 16px;
     font-size: 0.85rem;
   }
 }
 
 @media (max-width: 480px) {
   .container {
-    width: 95%;
-  }
-
-  .card {
-    padding: 15px;
+    padding: 12px;
   }
 
   .socials {
@@ -236,38 +244,47 @@ footer {
 
 <div class="container">
 
+  <!-- PROJECTS -->
   <div class="section-title">Projects</div>
 
-  <div class="grid">
+  <div class="projects">
+
     <div class="card">
       <h3>Annoying AI</h3>
       <p>A playful AI experiment with dynamic personality responses and interactive UI behavior.</p>
       <a class="btn" href="annoyingai.html">View Project</a>
     </div>
+
   </div>
 
+  <!-- SOCIALS -->
   <div class="socials-section">
-    <div class="section-title">Follow Us On Social Media</div>
+
+    <div class="section-title">Follow Us</div>
 
     <div class="socials">
 
-      <a href="https://www.tiktok.com/@forgebyte_tech" target="_blank" class="social-btn-text tiktok">
+      <!-- TikTok -->
+      <a href="https://www.tiktok.com/@forgebyte_tech" class="social-btn-text tiktok">
         TikTok
       </a>
 
-      <a href="https://youtube.com/@forgebyte_tech" target="_blank" class="social-btn youtube">
+      <!-- YouTube -->
+      <a href="https://youtube.com/@forgebyte_tech" class="social-btn youtube">
         <svg viewBox="0 0 24 24" fill="white">
-          <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+          <path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5S4.5 3.5 2.6 4.1A3 3 0 0 0 .5 6.2C0 8 0 12 0 12s0 4 .5 5.8a3 3 0 0 0 2.1 2.1C4.5 20.5 12 20.5 12 20.5s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1C24 16 24 12 24 12s0-4-.5-5.8zM9.5 15.5v-7L15.8 12 9.5 15.5z"/>
         </svg>
       </a>
 
-      <a href="https://www.facebook.com/share/17XX45opyp/" target="_blank" class="social-btn facebook">
+      <!-- Facebook -->
+      <a href="https://www.facebook.com/share/17XX45opyp/" class="social-btn facebook">
         <svg viewBox="0 0 24 24" fill="white">
-          <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+          <path d="M24 12c0-6.6-5.4-12-12-12S0 5.4 0 12c0 6 4.4 11 10 12v-8H7v-4h3V9c0-3 1.8-4.6 4.5-4.6H17v4h-2c-1.5 0-2 .9-2 1.9V12h4l-1 4h-3v8c5.6-1 10-6 10-12z"/>
         </svg>
       </a>
 
-      <a href="https://www.instagram.com/forgebyte_tech" target="_blank" class="social-btn-text instagram">
+      <!-- Instagram -->
+      <a href="https://www.instagram.com/forgebyte_tech" class="social-btn-text instagram">
         Instagram
       </a>
 
@@ -277,7 +294,7 @@ footer {
 </div>
 
 <footer>
-  © 2027 ForgeByteTech. All rights reserved.
+  © 2026 ForgeByteTech. All rights reserved.
 </footer>
 
 </body>
